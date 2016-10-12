@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+
+// this is auto generate file
+logs 
+
+// work file in config.js
+.temp

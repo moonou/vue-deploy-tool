@@ -1,0 +1,17 @@
+{
+  "name": "learn_cli",
+  "version": "1.0.0",
+  "description": "使用gulp自动构建项目",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-git": "^1.11.3",
+    "log4js": "^0.6.38",
+    "ora": "^0.3.0"
+  }
+}
