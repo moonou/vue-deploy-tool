@@ -14,7 +14,10 @@ npm install gulp -g
 
 ## Install
 clone this project and cd this folder
-
+``` shell
+git clone https://github.com/moonou/vue-deploy-tool.git [your folder]
+```
+when that complete, use `cd` to that folder
 ## Configure
 configure project related information in config.js
 
