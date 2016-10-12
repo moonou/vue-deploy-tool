@@ -25,7 +25,11 @@ module.exports = {
   remote: 'origin', 
   branch: 'master',
   packageManager: 'cnpm', // umm...., change your npm package manager
-  serverdir: '' //produce folder
+  serverdir: '', //produce folder
+  serverport: 3000 // server listen port
 }
 ```
-
+## Start
+``` shell
+node app.js
+```

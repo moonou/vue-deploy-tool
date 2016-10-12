@@ -48,7 +48,19 @@ gulp.task('installpackage', ['checkdir'], function (cb) {
   })
 })
 
-gulp.task('build', ['installpackage'], function (cb) {
+gulp.task('updatecode', ['installpackage'], function (cb) {
+  log.info('更新项目代码')
+  const codeupdate = ora('更新项目代码中').start()   
+  git.pull(config.remote, config.branch, {
+    cwd: config.gitworkdir
+  }, (err) => {
+    codeupdate.stop()
+    if (err) throw err
+    cb()
+  })
+})
+
+gulp.task('build', ['updatecode'], function (cb) {
   log.info('开始编译项目')  
   const npmspinner = ora('项目编译中').start()  
   exec('npm run build', {
