@@ -1,5 +1,5 @@
 {
-  "name": "learn_cli",
+  "name": "vue_deploy_tool",
   "version": "1.0.0",
   "description": "使用gulp自动构建项目",
   "main": "app.js",

@@ -1,5 +1,5 @@
 module.exports = {
-  repository: 'https://git.coding.net/moonou/learnjenk.git',
+  repository: '',
   gitworkdir: '.temp',
   remote: 'origin',
   branch: 'master',
