@@ -6,6 +6,7 @@ const log4js = require('log4js')
 const app = require('koa')()
 const config = require('./config')
 const os = require('os')
+const router = require('koa-router')()
 
 log4js.loadAppender('file')
 
@@ -28,7 +29,10 @@ checkfile(['./logs/gulp.log'])
 
 let gulpflag = false
 let againflag = false 
-app.use(function *(){
+let updatetype = 0 // 0 is copy, 1 is ftp
+
+router.get('/', function *(next) {
+  updatetype = 0
   if (gulpflag) {
     this.body = 'receive request but previous update is not complete ,it will update when that complete'
     againflag = true
@@ -39,11 +43,29 @@ app.use(function *(){
   }
 })
 
+router.get('/ftp', function *(next) {
+  updatetype = 1  
+  if (gulpflag) {
+    this.body = 'receive request for ftp but previous update is not complete ,it will update when that complete'
+    againflag = true
+  } else {
+    this.body = 'receive request for ftp will auto deploy project...'
+    gulpflag = true
+    update ()
+  }
+})
+
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
+
 function update () {
-  exec('gulp', (err, stdout, stderr) => {
+  let arg = 'copy'
+  if ( updatetype === 1 ) { arg = 'ftp' }
+  exec('gulp '+arg, (err, stdout, stderr) => {
     // do something
     if (err) throw err
-    console.log('打包完成')
+    console.log('部署完成')
     gulpflag = false
     if (againflag) {
       againflag = false

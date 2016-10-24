@@ -5,5 +5,11 @@ module.exports = {
   branch: 'master',
   packageManager: 'cnpm', // umm...., change your npm package manager
   serverdir: 'testproject',
-  serverport: 3000
+  serverport: 3000,
+  ftp: {
+      host: '', // this is ftp server
+      user: '', // ftpuser
+      pass: '', // ftppass
+      remotePath: '' // ftp dir
+    }
 }

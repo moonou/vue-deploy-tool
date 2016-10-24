@@ -2,6 +2,8 @@ const gulp = require('gulp')
 const fs = require('fs')
 const exec = require('child_process').exec
 const git = require('gulp-git')
+const gutil = require('gulp-util')
+const ftp = require('gulp-ftp')
 const ora = require('ora')
 const log4js = require('log4js')
 log4js.loadAppender('file')
@@ -11,7 +13,6 @@ const log = log4js.getLogger('gulp_log')
 const config = require('./config')
 
 gulp.task('default',['copy'], function(){
-  log.info('项目编译完成')
 })
 
 gulp.task('checkdir', function(cb){
@@ -76,4 +77,10 @@ gulp.task('copy', ['build'], function () {
   log.info('复制编译文件到生产目录')
   return gulp.src(config.gitworkdir+'/dist/**/*')
     .pipe(gulp.dest(config.serverdir))
+})
+
+gulp.task('ftp', ['build'], function () {
+  return gulp.src(config.gitworkdir+'/dist/**/*')
+    .pipe(ftp(config.ftp))
+    .pipe(gutil.noop())
 })
